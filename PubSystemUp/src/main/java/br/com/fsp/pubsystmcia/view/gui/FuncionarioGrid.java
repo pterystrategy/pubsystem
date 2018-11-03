@@ -6,6 +6,9 @@
 package br.com.fsp.pubsystmcia.view.gui;
 
 import br.com.fsp.pubsystmcia.controller.IControleSimples;
+import br.com.fsp.pubsystmcia.model.Funcionario;
+import br.com.fsp.pubsystmcia.modeltable.FuncionarioTableModel;
+import java.awt.Frame;
 
 /**
  *
@@ -13,7 +16,10 @@ import br.com.fsp.pubsystmcia.controller.IControleSimples;
  */
 public class FuncionarioGrid extends javax.swing.JDialog {
 
+    private static FuncionarioGrid grid;
+
     private IControleSimples controle;
+    private FuncionarioTableModel model;
 
     /**
      * Creates new form ClienteCRUD
@@ -21,15 +27,44 @@ public class FuncionarioGrid extends javax.swing.JDialog {
      * @param parent
      * @param modal
      */
-    public FuncionarioGrid(java.awt.Frame parent, boolean modal) {
+    private FuncionarioGrid(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+    }
+
+    private FuncionarioGrid(java.awt.Frame parent, boolean modal, IControleSimples controle) {
+        this(parent, modal);
+        this.controle = controle;
+    }
+
+    public FuncionarioGrid(Frame parent, boolean modal, IControleSimples controle, FuncionarioTableModel model) {
+        this(parent, modal, controle);
+        this.model = model;
         initComponents();
     }
 
-    public FuncionarioGrid(java.awt.Frame parent, boolean modal, IControleSimples controle) {
-        this(parent, modal);
-        this.controle = controle;
-        initComponents();
+    public static FuncionarioGrid getInstance(Frame parent, boolean modal, IControleSimples controle, FuncionarioTableModel model) {
+        if (grid == null) {
+            /* Set the Nimbus look and feel */
+            //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+            /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+             * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+             */
+            try {
+                for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                    if ("Nimbus".equals(info.getName())) {
+                        javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                        break;
+                    }
+                }
+            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+                java.util.logging.Logger.getLogger(FuncionarioGrid.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            }
+            //</editor-fold>
+            //</editor-fold>
+            return new FuncionarioGrid(parent, modal, controle, model);
+        } else {
+            return grid;
+        }
     }
 
     public void setControle(IControleSimples controle) {
@@ -76,17 +111,7 @@ public class FuncionarioGrid extends javax.swing.JDialog {
             }
         });
 
-        tblGrid.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Título 1", "Título 2", "Título 3", "Título 4"
-            }
-        ));
+        tblGrid.setModel(this.model);
         tblGrid.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblGridMouseClicked(evt);
@@ -259,11 +284,15 @@ public class FuncionarioGrid extends javax.swing.JDialog {
     }//GEN-LAST:event_btnInserirActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
-        controle.update(null);
+        int selectedRow = this.tblGrid.getSelectedRow();
+        Funcionario objetoLinha = model.getObjetoLinha(selectedRow);
+        this.controle.update(objetoLinha);
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
-        controle.delete(null);
+        int selectedRow = this.tblGrid.getSelectedRow();
+        Funcionario objetoLinha = model.getObjetoLinha(selectedRow);
+        this.controle.delete(objetoLinha);
     }//GEN-LAST:event_btnRemoverActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -17,16 +17,15 @@ import br.com.fsp.pubsystmcia.model.validacoes.ValidaEmail;
  *
  * @author aluno
  */
-public class ViewGuiCadastroFuncionario extends ViewGuiSimples implements IViewSimplesCRUD<Funcionario>{
+public class ViewGuiCadastroFuncionario extends ViewGuiSimples implements IViewSimplesCRUD<Funcionario> {
 
-    
     private static ViewGuiCadastroFuncionario tela;
     private boolean retornoOk;
-    
-    public boolean isRetornoOk(){
+
+    public boolean isRetornoOk() {
         return retornoOk;
     }
-    
+
     public ViewGuiCadastroFuncionario(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -34,37 +33,36 @@ public class ViewGuiCadastroFuncionario extends ViewGuiSimples implements IViewS
         txtSenha.setDocument(new LimiteDigitosLetrasNumeros(15));
         txtLogin.setDocument(new LimiteDigitosLetrasNumeros((15)));
     }
-    
+
     public static ViewGuiCadastroFuncionario GetInstance(java.awt.Frame parent, boolean modal) {
         if (tela == null) {
             /* Set the Nimbus look and feel */
             //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
+            /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+             */
+            try {
+                for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                    if ("Nimbus".equals(info.getName())) {
+                        javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                        break;
+                    }
                 }
+            } catch (ClassNotFoundException ex) {
+                java.util.logging.Logger.getLogger(ViewGuiCadastroFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            } catch (InstantiationException ex) {
+                java.util.logging.Logger.getLogger(ViewGuiCadastroFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            } catch (IllegalAccessException ex) {
+                java.util.logging.Logger.getLogger(ViewGuiCadastroFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+                java.util.logging.Logger.getLogger(ViewGuiCadastroFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ViewGuiCadastroFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ViewGuiCadastroFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ViewGuiCadastroFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ViewGuiCadastroFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+            //</editor-fold>
             return new ViewGuiCadastroFuncionario(parent, modal);
-        }
-        else{
+        } else {
             return tela;
         }
-  
+
     }
 
     /**
@@ -281,50 +279,42 @@ public class ViewGuiCadastroFuncionario extends ViewGuiSimples implements IViewS
     private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
         String senha = txtSenha.getText();
         String confSenha = txtConfSenha.getText();
-        
-        if (txtNome.getText().isEmpty() || txtCpf.getText().isEmpty() || 
-            txtEmail.getText().isEmpty() || txtLogin.getText().isEmpty() ||
-            txtSenha.getText().isEmpty() || txtConfSenha.getText().isEmpty()){
-            this.showErrorMessage("Campo vazio!");        
-        }
-        else if(txtNome.getText().length()<3){
+
+        if (txtNome.getText().isEmpty() || txtCpf.getText().isEmpty()
+                || txtEmail.getText().isEmpty() || txtLogin.getText().isEmpty()
+                || txtSenha.getText().isEmpty() || txtConfSenha.getText().isEmpty()) {
+            this.showErrorMessage("Campo vazio!");
+        } else if (txtNome.getText().length() < 3) {
             this.showErrorMessage("O Nome deve conter no mínimo 3 caracteres!");
-        }
-        else if(txtSenha.getText().length()<6){
+        } else if (txtSenha.getText().length() < 6) {
             this.showErrorMessage("A Senha deve conter no mínimo 6 caracteres!");
-        }
-        else if(txtLogin.getText().length()<4){
+        } else if (txtLogin.getText().length() < 4) {
             this.showErrorMessage("Login deve conter no mínimo 4 caracteres!");
-        }
-        else if(ValidaCPF.isCPF(String.valueOf(txtCpf.getText())) == false){
+        } else if (ValidaCPF.isCPF(String.valueOf(txtCpf.getText())) == false) {
             this.showErrorMessage("CPF é invalido!");
-        }
-        else if(ValidaEmail.validaEmail(txtEmail.getText()) == false){
+        } else if (ValidaEmail.validaEmail(txtEmail.getText()) == false) {
             this.showErrorMessage("O Email informado é invalido!");
-        }
-        else if(senha.equals(confSenha) == false){
-            this.showMessage("Senha errada");    
-        }
-        else{
+        } else if (senha.equals(confSenha) == false) {
+            this.showMessage("Senha errada");
+        } else {
             retornoOk = true;
             this.dispose();
         }
     }//GEN-LAST:event_btnOkActionPerformed
 
 //     Scanner ler = new Scanner(System.in);
-//          
+//
 //            String CPF;
-//          
+//
 //            System.out.printf("Informe um CPF: ");
 //            CPF = ler.next();
-//          
+//
 //            System.out.printf("\nResultado: ");
 //                // usando os metodos isCPF() e imprimeCPF() da classe "ValidaCPF"
 //            if (ValidaCPF.isCPF(CPF) == true)
 //               System.out.printf("%s\n", ValidaCPF.imprimeCPF(CPF));
 //            else System.out.printf("Erro, CPF invalido !!!\n");
 //            }
-    
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
         retornoOk = false;
@@ -340,7 +330,7 @@ public class ViewGuiCadastroFuncionario extends ViewGuiSimples implements IViewS
     }//GEN-LAST:event_txtSenhaActionPerformed
 
     private void txtConfSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtConfSenhaActionPerformed
-        
+
     }//GEN-LAST:event_txtConfSenhaActionPerformed
 
     private void txtCpfFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCpfFocusLost
@@ -354,7 +344,7 @@ public class ViewGuiCadastroFuncionario extends ViewGuiSimples implements IViewS
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -411,11 +401,6 @@ public class ViewGuiCadastroFuncionario extends ViewGuiSimples implements IViewS
     private javax.swing.JPasswordField txtSenha;
     // End of variables declaration//GEN-END:variables
 
-    
-
-
-    
-    
     @Override
     public Funcionario criar() {
         this.limpaTela();
@@ -427,14 +412,12 @@ public class ViewGuiCadastroFuncionario extends ViewGuiSimples implements IViewS
         return funcionario;
     }
 
-    
-    
-    public Funcionario getScreenObject(){
+    public Funcionario getScreenObject() {
 
         Funcionario novo = new Funcionario();
         novo.setNome(txtNome.getText());
         boolean valido;
-        
+
 //        do{
 //            this.showMessage("Forneça o Cpf do Cliente: (Somente Digitos)");
 //            //valido = temp.setCpf(entrada.next());
@@ -447,19 +430,20 @@ public class ViewGuiCadastroFuncionario extends ViewGuiSimples implements IViewS
         novo.setSenha(txtSenha.getText());
         return novo;
     }
-    
-    public Funcionario limpaTela(){
-        
+
+    public Funcionario limpaTela() {
+
         txtNome.setText("");
         txtCpf.setText("");
         txtEmail.setText("");
         txtLogin.setText("");
         txtSenha.setText("");
         txtConfSenha.setText("");
-        
+
         return null;
     }
-    public void preencherTela(Funcionario preencha){
+
+    public void preencherTela(Funcionario preencha) {
         txtNome.setText(preencha.getNome());
         txtCpf.setText(String.valueOf(preencha.getCpf()));
         txtEmail.setText(preencha.getEmail());
@@ -467,7 +451,7 @@ public class ViewGuiCadastroFuncionario extends ViewGuiSimples implements IViewS
         txtConfSenha.setText(preencha.getSenha());
         txtConfSenha.setText("");
     }
-    
+
     @Override
     public void listar(List<Funcionario> listas) {
         String lista = "";
@@ -478,53 +462,45 @@ public class ViewGuiCadastroFuncionario extends ViewGuiSimples implements IViewS
         }
         showMessage(lista);
     }
-    
+
     @Override
     public void mostrar(Funcionario type) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-   
-    
-    
-    
+
     @Override
     public Funcionario editar(Funcionario funcionario) {
-        
-            this.setVisible(true);
-            if(retornoOk){
-                funcionario.setNome(txtNome.getText());
-                funcionario.setCpf(txtCpf.getText());
-                funcionario.setEmail(txtEmail.getText());
-                funcionario.setLogin(txtLogin.getText());
-                funcionario.setSenha(txtSenha.getText());
-            }
-            else if(retornoOk == false){
+
+        this.setVisible(true);
+        if (retornoOk) {
+            funcionario.setNome(txtNome.getText());
+            funcionario.setCpf(txtCpf.getText());
+            funcionario.setEmail(txtEmail.getText());
+            funcionario.setLogin(txtLogin.getText());
+            funcionario.setSenha(txtSenha.getText());
+        } else if (retornoOk == false) {
             showMessage("CANCELADO PELO USUÁRIO!");
-            }
-            else if (funcionario == null) {
-                showMessage("NÃO ENCONTRADO!");
-            }
-            else{
-                showMessage("ALTERADO COM SUCESSO!");
-            }
-            return funcionario;
+        } else if (funcionario == null) {
+            showMessage("NÃO ENCONTRADO!");
+        } else {
+            showMessage("ALTERADO COM SUCESSO!");
+        }
+        return funcionario;
     }
 
-   
-    
     @Override
     public boolean excluir(Funcionario deletar) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.preencherTela(deletar);
+        this.setVisible(true);
+        return true;
     }
     //Este abaixo comentado é o DELETAR que estava no meu, como não entedi o que o alessio fez no dele não mexi com esse ainda.
-    
-    
-    
+
 //    public Funcionario delete(Funcionario remover) {
 //        String id = "";
 //        Funcionario funcionario = null;
 //        askForLong(id);
-//        
+//
 //        for (Funcionario funcio : findAllList()) {
 //            if (funcio.getCodigo().equals(id)) {
 //                funcionario = funcio;
@@ -536,16 +512,12 @@ public class ViewGuiCadastroFuncionario extends ViewGuiSimples implements IViewS
 //        else{
 //            showMessage("ALTERADO COM SUCESSO!");
 //        }
-// 
+//
 //        return funcionario;
 //    }
-
-    
-
     @Override
     public void read(Funcionario Type) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
 
 }
