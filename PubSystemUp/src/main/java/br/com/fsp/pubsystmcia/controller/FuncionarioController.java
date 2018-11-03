@@ -6,7 +6,9 @@
 package br.com.fsp.pubsystmcia.controller;
 
 import br.com.fsp.pubsystmcia.dao.FuncionarioDao;
+import br.com.fsp.pubsystmcia.dao.IDAO;
 import br.com.fsp.pubsystmcia.model.Funcionario;
+import br.com.fsp.pubsystmcia.modeltable.FuncionarioTableModel;
 import br.com.fsp.pubsystmcia.view.gui.FuncionarioGrid;
 import br.com.fsp.pubsystmcia.view.gui.ViewGuiCadastroFuncionario;
 import java.util.List;
@@ -19,11 +21,14 @@ public class FuncionarioController extends AbstractControleSimples<Funcionario> 
 
     protected FuncionarioGrid grid;
     private final ViewGuiCadastroFuncionario tela;
+    private final FuncionarioTableModel model;
 
     public FuncionarioController() {
         dao = new FuncionarioDao();
+
+        model = new FuncionarioTableModel(dao.findAll());
         //Cria CRUD
-        grid = new FuncionarioGrid(null, true, this);
+        grid = FuncionarioGrid.getInstance(null, true, this, model);
 
         tela = new ViewGuiCadastroFuncionario(null, true);
     }
@@ -35,12 +40,12 @@ public class FuncionarioController extends AbstractControleSimples<Funcionario> 
 
     @Override
     public Funcionario create() {
-        Funcionario f = tela.criar();
+        Funcionario criar = tela.criar();
         //List<Funcionario> lista = dao.findAll();
+        Funcionario create = dao.create(criar);
 
-        dao.create(f);
-
-        return f;
+        model.add(create);
+        return create;
     }
 
     @Override
@@ -51,29 +56,23 @@ public class FuncionarioController extends AbstractControleSimples<Funcionario> 
 
     @Override
     public Funcionario update(Funcionario objeto) {
-        this.read(null);
-        int id = tela.askForInt("Digite o código do funcionário a editar");
-        Funcionario f = dao.findById(id);
-        Funcionario f2 = tela.editar(f);
-        dao.update(f2);
-        return f2;
+        Funcionario editar = tela.editar(objeto);
+        Funcionario update = dao.update(editar);
+        this.model.update(editar, update);
+        return update;
     }
 
     @Override
     public boolean delete(Funcionario objeto) {
-        this.read(null);
 
-        int id = tela.askForInt("Insira o código do funcionário a remover");
-        Funcionario f = dao.findById(id);
-
-        boolean resposta = dao.delete(f);
-
-        if (resposta == false) {
-            tela.showMessage("Funcionário não encontrado");
-        } else {
-            tela.showMessage("Funcionário excluído com êxito");
+        Funcionario findById = dao.findById(objeto.getCodigo());
+        this.tela.preencherTela(objeto);
+        boolean delete = this.tela.excluir(findById);
+        if (delete) {
+            this.model.remove(findById);
+            return this.dao.delete(findById);
         }
-        return resposta;
+        return false;
     }
 
     @Override
