@@ -37,7 +37,7 @@
                   <Group type="102" attributes="0">
                       <Component id="lblFornecedor" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                      <Component id="cbxFornecedor" min="-2" pref="182" max="-2" attributes="0"/>
+                      <Component id="cmbFornecedores" min="-2" pref="182" max="-2" attributes="0"/>
                   </Group>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
@@ -135,7 +135,7 @@
               <EmptySpace pref="30" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblFornecedor" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="cbxFornecedor" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cmbFornecedores" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="109" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -251,19 +251,20 @@
         <Property name="text" type="java.lang.String" value="Fornecedor:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="cbxFornecedor">
+    <Component class="javax.swing.JComboBox" name="cmbFornecedores">
       <Properties>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Item 1"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
-          </StringArray>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="this.modelFornecedores" type="code"/>
+        </Property>
+        <Property name="selectedItem" type="java.lang.Object" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="this.listaFornecedores" type="code"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbFornecedoresActionPerformed"/>
+      </Events>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Fornecedor&gt;"/>
       </AuxValues>
     </Component>
     <Component class="javax.swing.JButton" name="btnLimpar">

@@ -6,6 +6,7 @@
 package br.com.fsp.pubsystmcia.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -34,14 +35,14 @@ public class Fornecedor implements Serializable {
     private Long codigo;
     @Column(name = "nomeFornecedor", length = 40, nullable = false)
     private String nome;
-    @Column(name = "razaoSocial", length = 50, nullable = false)
+    @Column(name = "razaoSocial", length = 50, nullable = true)
     private String razaoSocial;
 
     @OneToMany(mappedBy = "fornecedor")
     private List<Telefone> telefones;
 
     @OneToMany(mappedBy = "fornecedor")
-    private List<Endereco> enderecos;
+    private List<Endereco> enderecos = new ArrayList<>();
 
     @OneToMany(mappedBy = "fornecedor")
     private List<Produto> produtos;
@@ -107,6 +108,10 @@ public class Fornecedor implements Serializable {
 //    public void setEndereco(List endereco) {
 //        this.endereco = endereco;
 //    }
+
+    public void addEndereco(Endereco endereco) {
+        this.enderecos.add(endereco);
+    }
 
     public List<Produto> getProdutos() {
         return produtos;

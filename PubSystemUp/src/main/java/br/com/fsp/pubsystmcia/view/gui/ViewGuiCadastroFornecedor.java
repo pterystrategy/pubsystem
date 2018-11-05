@@ -5,6 +5,7 @@
  */
 package br.com.fsp.pubsystmcia.view.gui;
 
+import br.com.fsp.pubsystmcia.model.Endereco;
 import br.com.fsp.pubsystmcia.model.Fornecedor;
 import br.com.fsp.pubsystmcia.view.IViewSimplesCRUD;
 import java.util.List;
@@ -13,47 +14,45 @@ import java.util.List;
  *
  * @author Frederico
  */
-public class ViewGuiCadastroFornecedor extends ViewGuiSimples implements IViewSimplesCRUD<Fornecedor>{
+public class ViewGuiCadastroFornecedor extends ViewGuiSimples implements IViewSimplesCRUD<Fornecedor> {
 
     private static ViewGuiCadastroFornecedor tela;
     private boolean retornoOk;
-    
-    public boolean isRetornoOk(){
+
+    public boolean isRetornoOk() {
         return retornoOk;
     }
-    
+
     public static ViewGuiCadastroFornecedor GetInstance(java.awt.Frame parent, boolean modal) {
         if (tela == null) {
             /* Set the Nimbus look and feel */
             //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
+            /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+             */
+            try {
+                for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                    if ("Nimbus".equals(info.getName())) {
+                        javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                        break;
+                    }
                 }
+            } catch (ClassNotFoundException ex) {
+                java.util.logging.Logger.getLogger(ViewGuiCadastroFornecedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            } catch (InstantiationException ex) {
+                java.util.logging.Logger.getLogger(ViewGuiCadastroFornecedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            } catch (IllegalAccessException ex) {
+                java.util.logging.Logger.getLogger(ViewGuiCadastroFornecedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+                java.util.logging.Logger.getLogger(ViewGuiCadastroFornecedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ViewGuiCadastroFornecedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ViewGuiCadastroFornecedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ViewGuiCadastroFornecedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ViewGuiCadastroFornecedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+            //</editor-fold>
             return new ViewGuiCadastroFornecedor(parent, modal);
-        }
-        else{
+        } else {
             return tela;
         }
-  
+
     }
-    
 
     public ViewGuiCadastroFornecedor(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -245,14 +244,13 @@ public class ViewGuiCadastroFornecedor extends ViewGuiSimples implements IViewSi
         // TODO add your handling code here:
         retornoOk = false;
         this.dispose();
-        
+
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
-        if (txtNome.getText().isEmpty() || txtRazaoSocial.getText().isEmpty()){
-            this.showErrorMessage("Campo vazio!");        
-        }
-        else{
+        if (txtNome.getText().isEmpty() || txtRazaoSocial.getText().isEmpty()) {
+            this.showErrorMessage("Campo vazio!");
+        } else {
             retornoOk = true;
             this.dispose();
         }
@@ -265,7 +263,7 @@ public class ViewGuiCadastroFornecedor extends ViewGuiSimples implements IViewSi
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -289,17 +287,15 @@ public class ViewGuiCadastroFornecedor extends ViewGuiSimples implements IViewSi
         //</editor-fold>
 
         /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                ViewGuiCadastroFornecedor dialog = new ViewGuiCadastroFornecedor(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            ViewGuiCadastroFornecedor dialog = new ViewGuiCadastroFornecedor(new javax.swing.JFrame(), true);
+            dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                @Override
+                public void windowClosing(java.awt.event.WindowEvent e) {
+                    System.exit(0);
+                }
+            });
+            dialog.setVisible(true);
         });
     }
 
@@ -332,36 +328,51 @@ public class ViewGuiCadastroFornecedor extends ViewGuiSimples implements IViewSi
         this.setVisible(true);
         Fornecedor fornecedor = null;
         if (retornoOk) {
-            this.getScreenObject();
-            
+            fornecedor = this.getScreenObject();
+
         }
         return fornecedor;
-        
+
     }
-    
-      public Fornecedor getScreenObject(){
+
+    @Override
+    public Fornecedor getScreenObject() {
 
         Fornecedor novo = new Fornecedor();
         novo.setNome(txtNome.getText());
         //novo.setEndereco(txtEndereco.getText());
+//        Endereco endereco = new Endereco();
+//        String[] enderecoSeparado;
+//        enderecoSeparado = txtRazaoSocial.getText().split(";");
+//
+//        endereco.setLogradouro(enderecoSeparado[0]);
+//        endereco.setBairro(enderecoSeparado[1]);
+//        endereco.setLocalidade(enderecoSeparado[2]);
+//
+//        endereco.setFornecedor(novo);
+//
+//        novo.addEndereco(endereco);
         novo.setRazaoSocial(txtRazaoSocial.getText());
-        
+
         return novo;
     }
-    
-    public Fornecedor limpaTela(){
-        
+
+    @Override
+    public void limpaTela() {
+
         txtNome.setText("");
         txtEndereco.setText("");
         txtRazaoSocial.setText("");
         txtTelefone.setText("");
         txtTelefoneFixo.setText("");
-        
-        return null;
     }
-    public void preencherTela(Fornecedor preencha){
+
+    @Override
+    public void preencherTela(Fornecedor preencha) {
         txtNome.setText(preencha.getNome());
-        //txtEndereco.setText(preencha.getEndereco());
+        Endereco get = preencha.getEnderecos().get(0);
+        String endereco = get.getLogradouro() + ";" + get.getLocalidade() + ";" + get.getBairro() + ";" + get.getCep();
+        txtEndereco.setText(endereco);
         txtRazaoSocial.setText(preencha.getRazaoSocial());
         //txtTelefone.setText(preencha.getTelefones());
         //txtTelefoneFixo.setText(preencha.getTelefones());
@@ -375,18 +386,15 @@ public class ViewGuiCadastroFornecedor extends ViewGuiSimples implements IViewSi
     @Override
     public Fornecedor editar(Fornecedor fornecedor) {
         this.setVisible(true);
-        if(retornoOk){
-           fornecedor.setNome(txtNome.getText());
+        if (retornoOk) {
+            fornecedor.setNome(txtNome.getText());
             //novo.setEndereco(txtEndereco.getText());
-           fornecedor.setRazaoSocial(txtRazaoSocial.getText());
-        }
-        else if(retornoOk == false){
+            fornecedor.setRazaoSocial(txtRazaoSocial.getText());
+        } else if (retornoOk == false) {
             showMessage("CANCELADO PELO USUÁRIO!");
-        }
-        else if (fornecedor == null) {
+        } else if (fornecedor == null) {
             showMessage("NÃO ENCONTRADO!");
-        }
-        else{
+        } else {
             showMessage("ALTERADO COM SUCESSO!");
         }
         return fornecedor;
@@ -394,7 +402,9 @@ public class ViewGuiCadastroFornecedor extends ViewGuiSimples implements IViewSi
 
     @Override
     public boolean excluir(Fornecedor deletar) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.preencherTela(deletar);
+        this.setVisible(true);
+        return true;
     }
 
     @Override

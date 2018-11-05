@@ -6,7 +6,6 @@
 package br.com.fsp.pubsystmcia.controller;
 
 import br.com.fsp.pubsystmcia.dao.FuncionarioDao;
-import br.com.fsp.pubsystmcia.dao.IDAO;
 import br.com.fsp.pubsystmcia.model.Funcionario;
 import br.com.fsp.pubsystmcia.modeltable.FuncionarioTableModel;
 import br.com.fsp.pubsystmcia.view.gui.FuncionarioGrid;

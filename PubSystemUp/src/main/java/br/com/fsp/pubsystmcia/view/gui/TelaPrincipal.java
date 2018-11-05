@@ -7,7 +7,6 @@ package br.com.fsp.pubsystmcia.view.gui;
 
 import br.com.fsp.pubsystmcia.controller.PrincipalControle;
 
-
 /**
  *
  * @author Sóstenes
@@ -16,7 +15,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private static TelaPrincipal tela;
     private PrincipalControle controle;
-    
+
     /**
      * Creates new form TelaPrincipal
      */
@@ -29,11 +28,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
      */
     public static TelaPrincipal getInstance(PrincipalControle controle) {
 
-        if (tela == null){
+        if (tela == null) {
             tela = new TelaPrincipal();
         }
         tela.controle = controle;
-        return tela;                 
+        return tela;
     }
 
     /**
@@ -47,7 +46,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        imnFuncionario = new javax.swing.JMenuItem();
+        imnMesa = new javax.swing.JMenuItem();
+        imnFornecedor = new javax.swing.JMenuItem();
+        imnProduto = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -59,13 +61,37 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jMenuItem1.setText("Cadastro funcionario ");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        imnFuncionario.setText("Cadastro funcionario ");
+        imnFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                imnFuncionarioActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        jMenu1.add(imnFuncionario);
+
+        imnMesa.setText("Cadastro Mesa");
+        imnMesa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imnMesaActionPerformed(evt);
+            }
+        });
+        jMenu1.add(imnMesa);
+
+        imnFornecedor.setText("Cadastro Fornecedor");
+        imnFornecedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imnFornecedorActionPerformed(evt);
+            }
+        });
+        jMenu1.add(imnFornecedor);
+
+        imnProduto.setText("Cadastro Produto");
+        imnProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imnProdutoActionPerformed(evt);
+            }
+        });
+        jMenu1.add(imnProduto);
 
         jMenuBar1.add(jMenu1);
 
@@ -92,9 +118,21 @@ public class TelaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenu1ActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void imnFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imnFuncionarioActionPerformed
         controle.iniciaFuncionarioControle();
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_imnFuncionarioActionPerformed
+
+    private void imnMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imnMesaActionPerformed
+        this.controle.iniciaMesaControle();
+    }//GEN-LAST:event_imnMesaActionPerformed
+
+    private void imnFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imnFornecedorActionPerformed
+        this.controle.iniciaFornecedorControle();
+    }//GEN-LAST:event_imnFornecedorActionPerformed
+
+    private void imnProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imnProdutoActionPerformed
+        this.controle.iniciaProdutoControle();
+    }//GEN-LAST:event_imnProdutoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -103,7 +141,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -133,9 +171,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem imnFornecedor;
+    private javax.swing.JMenuItem imnFuncionario;
+    private javax.swing.JMenuItem imnMesa;
+    private javax.swing.JMenuItem imnProduto;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     // End of variables declaration//GEN-END:variables
 }

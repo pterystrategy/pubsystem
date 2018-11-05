@@ -6,13 +6,12 @@
 package br.com.fsp.pubsystmcia.controller;
 
 import br.com.fsp.pubsystmcia.model.Comanda;
-import java.util.List;
 
 /**
  *
  * @author Frederico
  */
-public class ComandaController extends AbstractControleSimples<Comanda>{
+public class ComandaController extends AbstractControleSimples<Comanda> {
 
     @Override
     public void showInicialScreen() {
@@ -48,5 +47,5 @@ public class ComandaController extends AbstractControleSimples<Comanda>{
     public boolean filter(String column, String valor) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

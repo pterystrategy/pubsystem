@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author Frederico
  */
-public class ViewGuiCadastroMesa extends ViewGuiSimples implements IViewSimplesCRUD<Mesa>{
+public class ViewGuiCadastroMesa extends ViewGuiSimples implements IViewSimplesCRUD<Mesa> {
 
     /**
      * Creates new form ViewGuiMesaCadastro
@@ -51,8 +51,18 @@ public class ViewGuiCadastroMesa extends ViewGuiSimples implements IViewSimplesC
         btnLimpar.setText("Limpar");
 
         btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         btnOk.setText("Cadastrar");
+        btnOk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOkActionPerformed(evt);
+            }
+        });
 
         txtNumeroMesa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -103,6 +113,16 @@ public class ViewGuiCadastroMesa extends ViewGuiSimples implements IViewSimplesC
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNumeroMesaActionPerformed
 
+    private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
+        confirmado = true;
+        this.dispose();
+    }//GEN-LAST:event_btnOkActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        confirmado = false;
+        this.dispose();
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -110,7 +130,7 @@ public class ViewGuiCadastroMesa extends ViewGuiSimples implements IViewSimplesC
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -148,8 +168,6 @@ public class ViewGuiCadastroMesa extends ViewGuiSimples implements IViewSimplesC
         });
     }
 
-    
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnLimpar;
@@ -158,34 +176,104 @@ public class ViewGuiCadastroMesa extends ViewGuiSimples implements IViewSimplesC
     private javax.swing.JLabel lblNumeroMesa;
     private javax.swing.JTextField txtNumeroMesa;
     // End of variables declaration//GEN-END:variables
+    private boolean confirmado = false;
 
     @Override
     public Mesa criar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        lTitulo.setText("Cadastro de Mesa");
+        txtNumeroMesa.setText("");
+        txtNumeroMesa.setEditable(true);
+        txtNumeroMesa.setEnabled(true);
+        btnCancelar.setVisible(true);
+        Mesa screenObject;
+        if (confirmado) {
+            screenObject = this.getScreenObject();
+        }
+        this.setVisible(true);
+        return this.getScreenObject();
     }
 
     @Override
     public void mostrar(Mesa type) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        lTitulo.setText("Dados da Mesa");
+
+        txtNumeroMesa.setText(Integer.toString(type.getNumero()));
+        txtNumeroMesa.setEditable(false);
+        txtNumeroMesa.setEnabled(false);
+
+        btnCancelar.setVisible(false);
+        this.setVisible(true);
     }
 
     @Override
     public Mesa editar(Mesa salvar) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        this.setVisible(true);
+        if (confirmado) {
+            txtNumeroMesa.setText(Integer.toString(salvar.getNumero()));
+            txtNumeroMesa.setEditable(false);
+            txtNumeroMesa.setEnabled(false);
+        } else if (confirmado == false) {
+            showMessage("CANCELADO PELO USUÁRIO!");
+        } else if (salvar == null) {
+            showMessage("NÃO ENCONTRADO!");
+        } else {
+            showMessage("ALTERADO COM SUCESSO!");
+        }
+        return salvar;
     }
 
     @Override
     public boolean excluir(Mesa deletar) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.preencherTela(deletar);
+        this.setVisible(true);
+        return true;
     }
 
     @Override
     public void listar(List<Mesa> listas) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String lista = "";
+        for (Mesa mesa : listas) {
+            if (mesa != null) {
+                lista += mesa.toString() + "\n";
+            }
+        }
+        showMessage(lista);
     }
 
     @Override
     public void read(Mesa Type) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Mesa getScreenObject() {
+        this.limpaTela();
+        if (txtNumeroMesa.getText().equals("")) {
+            txtNumeroMesa.setText("0000");
+        }
+        Mesa retorno = new Mesa();
+        retorno.setNumero(Integer.parseInt(txtNumeroMesa.getText()));
+        return retorno;
+    }
+
+    public boolean isConfirmado() {
+        return confirmado;
+    }
+
+    public void setConfirmado(boolean confirmado) {
+        this.confirmado = confirmado;
+    }
+
+    @Override
+    public void preencherTela(Mesa preencha) {
+        txtNumeroMesa.setText(Integer.toString(preencha.getNumero()));
+        txtNumeroMesa.setEditable(true);
+        txtNumeroMesa.setEnabled(true);
+    }
+
+    @Override
+    public void limpaTela() {
+        txtNumeroMesa.setText("");
     }
 }

@@ -5,7 +5,10 @@
  */
 package br.com.fsp.pubsystmcia.view.gui;
 
+import br.com.fsp.pubsystmcia.model.Fornecedor;
 import br.com.fsp.pubsystmcia.model.Produto;
+import br.com.fsp.pubsystmcia.modelcombo.FornecedoresCellRenderer;
+import br.com.fsp.pubsystmcia.modelcombo.FornecedoresComboModel;
 import br.com.fsp.pubsystmcia.view.IViewSimplesCRUD;
 import java.util.List;
 
@@ -13,51 +16,50 @@ import java.util.List;
  *
  * @author Frederico
  */
-public class ViewGuiCadastroProduto extends ViewGuiSimples implements IViewSimplesCRUD<Produto>{
+public class ViewGuiCadastroProduto extends ViewGuiSimples implements IViewSimplesCRUD<Produto> {
 
     private static ViewGuiCadastroProduto tela;
     private boolean retornoOk;
-    
-    public boolean isRetornoOk(){
+
+    public boolean isRetornoOk() {
         return retornoOk;
     }
-    
-  
+
     public ViewGuiCadastroProduto(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.cmbFornecedores.setRenderer(new FornecedoresCellRenderer());
     }
-    
-        public static ViewGuiCadastroProduto GetInstance(java.awt.Frame parent, boolean modal) {
+
+    public static ViewGuiCadastroProduto GetInstance(java.awt.Frame parent, boolean modal) {
         if (tela == null) {
             /* Set the Nimbus look and feel */
             //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
+            /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+             */
+            try {
+                for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                    if ("Nimbus".equals(info.getName())) {
+                        javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                        break;
+                    }
                 }
+            } catch (ClassNotFoundException ex) {
+                java.util.logging.Logger.getLogger(ViewGuiCadastroProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            } catch (InstantiationException ex) {
+                java.util.logging.Logger.getLogger(ViewGuiCadastroProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            } catch (IllegalAccessException ex) {
+                java.util.logging.Logger.getLogger(ViewGuiCadastroProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+                java.util.logging.Logger.getLogger(ViewGuiCadastroProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ViewGuiCadastroProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ViewGuiCadastroProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ViewGuiCadastroProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ViewGuiCadastroProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+            //</editor-fold>
             return new ViewGuiCadastroProduto(parent, modal);
-        }
-        else{
+        } else {
             return tela;
         }
-  
+
     }
 
     /**
@@ -86,7 +88,7 @@ public class ViewGuiCadastroProduto extends ViewGuiSimples implements IViewSimpl
         txtPrecoVenda = new javax.swing.JFormattedTextField();
         lblPrecoVenda = new javax.swing.JLabel();
         lblFornecedor = new javax.swing.JLabel();
-        cbxFornecedor = new javax.swing.JComboBox<>();
+        cmbFornecedores = new javax.swing.JComboBox<>();
         btnLimpar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         btnOk = new javax.swing.JButton();
@@ -135,7 +137,13 @@ public class ViewGuiCadastroProduto extends ViewGuiSimples implements IViewSimpl
 
         lblFornecedor.setText("Fornecedor:");
 
-        cbxFornecedor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbFornecedores.setModel(this.modelFornecedores);
+        cmbFornecedores.setSelectedItem(this.listaFornecedores);
+        cmbFornecedores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbFornecedoresActionPerformed(evt);
+            }
+        });
 
         btnLimpar.setText("Limpar");
         btnLimpar.addActionListener(new java.awt.event.ActionListener() {
@@ -169,7 +177,7 @@ public class ViewGuiCadastroProduto extends ViewGuiSimples implements IViewSimpl
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblFornecedor)
                         .addGap(15, 15, 15)
-                        .addComponent(cbxFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cmbFornecedores, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -245,7 +253,7 @@ public class ViewGuiCadastroProduto extends ViewGuiSimples implements IViewSimpl
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblFornecedor)
-                    .addComponent(cbxFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbFornecedores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnLimpar)
@@ -266,12 +274,11 @@ public class ViewGuiCadastroProduto extends ViewGuiSimples implements IViewSimpl
     }//GEN-LAST:event_txtValidadeActionPerformed
 
     private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
-        if (txtNome.getText().isEmpty() || txtMarca.getText().isEmpty() || 
-            txtPrecoCompra.getText().isEmpty() || txtPrecoVenda.getText().isEmpty() ||
-            txtQuantidadeAtual.getText().isEmpty() ) {
-            this.showErrorMessage("Campo vazio!");        
-        }
-        else{
+        if (txtNome.getText().isEmpty() || txtMarca.getText().isEmpty()
+                || txtPrecoCompra.getText().isEmpty() || txtPrecoVenda.getText().isEmpty()
+                || txtQuantidadeAtual.getText().isEmpty()) {
+            this.showErrorMessage("Campo vazio!");
+        } else {
             retornoOk = true;
             this.dispose();
         }
@@ -287,6 +294,10 @@ public class ViewGuiCadastroProduto extends ViewGuiSimples implements IViewSimpl
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
+    private void cmbFornecedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbFornecedoresActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbFornecedoresActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -294,7 +305,7 @@ public class ViewGuiCadastroProduto extends ViewGuiSimples implements IViewSimpl
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -331,13 +342,14 @@ public class ViewGuiCadastroProduto extends ViewGuiSimples implements IViewSimpl
             }
         });
     }
-
+    private final FornecedoresComboModel modelFornecedores = new FornecedoresComboModel();
+    private List<Fornecedor> listaFornecedores;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnLimpar;
     private javax.swing.JButton btnOk;
     private javax.swing.JComboBox<String> cbxCategoria;
-    private javax.swing.JComboBox<String> cbxFornecedor;
+    private javax.swing.JComboBox<Fornecedor> cmbFornecedores;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JLabel lTitulo;
     private javax.swing.JLabel lblCategoria;
@@ -356,21 +368,20 @@ public class ViewGuiCadastroProduto extends ViewGuiSimples implements IViewSimpl
     private javax.swing.JFormattedTextField txtValidade;
     // End of variables declaration//GEN-END:variables
 
-
-
     @Override
     public Produto criar() {
         this.limpaTela();
         this.setVisible(true);
         Produto produto = null;
         if (retornoOk) {
-            produto= this.getScreenObject();
-            
+            produto = this.getScreenObject();
+
         }
         return produto;
     }
-    
-    public Produto getScreenObject(){
+
+    @Override
+    public Produto getScreenObject() {
 
         Produto novo = new Produto();
         novo.setNome(txtNome.getText());
@@ -378,28 +389,29 @@ public class ViewGuiCadastroProduto extends ViewGuiSimples implements IViewSimpl
         novo.setPrecoCompra(Double.parseDouble(txtPrecoCompra.getText()));
         novo.setPrecoVenda(Double.parseDouble(txtPrecoVenda.getText()));
         novo.setQuatidade(Integer.parseInt(txtQuantidadeAtual.getText()));
-        
+
         return novo;
     }
-    
-    public Produto limpaTela(){
-        
+
+    @Override
+    public void limpaTela() {
+
         txtNome.setText("");
         txtMarca.setText("");
         txtPrecoCompra.setText("");
         txtPrecoVenda.setText("");
         txtQuantidadeAtual.setText("");
         txtValidade.setText("");
-        
-        return null;
     }
-    public void preencherTela (Produto preencha){
+
+    @Override
+    public void preencherTela(Produto preencha) {
         txtNome.setText(preencha.getNome());
         txtMarca.setText(preencha.getMarca());
         txtPrecoCompra.setText(String.valueOf(preencha.getPrecoCompra()));
         txtPrecoVenda.setText(String.valueOf(preencha.getPrecoVenda()));
         txtQuantidadeAtual.setText(String.valueOf(preencha.getQuantidadeAtual()));
-        
+
     }
 
     @Override
@@ -416,22 +428,26 @@ public class ViewGuiCadastroProduto extends ViewGuiSimples implements IViewSimpl
             produto.setPrecoCompra(Double.parseDouble(txtPrecoCompra.getText()));
             produto.setPrecoVenda(Double.parseDouble(txtPrecoVenda.getText()));
             produto.setQuatidade(Integer.parseInt(txtQuantidadeAtual.getText()));
-        }
-        else if(retornoOk == false){
+        } else if (retornoOk == false) {
             showMessage("CANCELADO PELO USUÁRIO!");
-        }
-        else if (produto == null) {
+        } else if (produto == null) {
             showMessage("NÃO ENCONTRADO!");
-        }
-        else{
+        } else {
             showMessage("ALTERADO COM SUCESSO!");
         }
-            return produto;
+        return produto;
+    }
+
+    public void setListaFornecedores(List<Fornecedor> listaFornecedores) {
+        modelFornecedores.clear();
+        modelFornecedores.addListFornecedor(listaFornecedores);
     }
 
     @Override
     public boolean excluir(Produto deletar) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.preencherTela(deletar);
+        this.setVisible(true);
+        return true;
     }
 
     @Override

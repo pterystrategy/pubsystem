@@ -43,7 +43,7 @@ public class Endereco implements Serializable {
     private String cep;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-    @JoinColumn(name = "cd_fornecedor", referencedColumnName = "cd_fornecedor")
+    @JoinColumn(name = "cd_fornecedor", referencedColumnName = "cd_fornecedor", nullable = true)
     private Fornecedor fornecedor;
 
     public Long getId() {

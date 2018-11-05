@@ -412,6 +412,7 @@ public class ViewGuiCadastroFuncionario extends ViewGuiSimples implements IViewS
         return funcionario;
     }
 
+    @Override
     public Funcionario getScreenObject() {
 
         Funcionario novo = new Funcionario();
@@ -431,7 +432,7 @@ public class ViewGuiCadastroFuncionario extends ViewGuiSimples implements IViewS
         return novo;
     }
 
-    public Funcionario limpaTela() {
+    public void limpaTela() {
 
         txtNome.setText("");
         txtCpf.setText("");
@@ -439,10 +440,9 @@ public class ViewGuiCadastroFuncionario extends ViewGuiSimples implements IViewS
         txtLogin.setText("");
         txtSenha.setText("");
         txtConfSenha.setText("");
-
-        return null;
     }
 
+    @Override
     public void preencherTela(Funcionario preencha) {
         txtNome.setText(preencha.getNome());
         txtCpf.setText(String.valueOf(preencha.getCpf()));

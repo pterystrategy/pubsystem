@@ -5,64 +5,65 @@
  */
 package br.com.fsp.pubsystmcia.controller;
 
-import br.com.fsp.pubsystmcia.dao.MesaDao;
-import br.com.fsp.pubsystmcia.model.Mesa;
-import br.com.fsp.pubsystmcia.modeltable.MesaTableModel;
-import br.com.fsp.pubsystmcia.view.gui.MesaGrid;
-import br.com.fsp.pubsystmcia.view.gui.ViewGuiCadastroMesa;
+import br.com.fsp.pubsystmcia.dao.FornecedorDao;
+import br.com.fsp.pubsystmcia.model.Fornecedor;
+import br.com.fsp.pubsystmcia.modeltable.FornecedorTableModel;
+import br.com.fsp.pubsystmcia.view.gui.FornecedorGrid;
+import br.com.fsp.pubsystmcia.view.gui.ViewGuiCadastroFornecedor;
 import java.util.List;
 
 /**
  *
  * @author Sóstenes
  */
-public class MesaController extends AbstractControleSimples<Mesa> {
+public class FornecedorController extends AbstractControleSimples<Fornecedor> {
 
-    protected MesaGrid grid;
-    private final ViewGuiCadastroMesa tela;
-    private final MesaTableModel model;
+    protected FornecedorGrid grid;
+    private final ViewGuiCadastroFornecedor tela;
+    private final FornecedorTableModel model;
 
-    public MesaController() {
-        dao = new MesaDao();
+    public FornecedorController() {
+        dao = new FornecedorDao();
 
-        model = new MesaTableModel(dao.findAll());
+        model = new FornecedorTableModel(dao.findAll());
         //Cria CRUD
-        grid = MesaGrid.getInstance(null, true, this, model);
+        grid = FornecedorGrid.getInstance(null, true, this, model);
 
-        tela = new ViewGuiCadastroMesa(null, true);
+        tela = new ViewGuiCadastroFornecedor(null, true);
     }
 
     @Override
     public void showInicialScreen() {
-        this.grid.setVisible(true);
+        grid.setVisible(true);
     }
 
     @Override
-    public Mesa create() {
-        Mesa criar = tela.criar();
-        Mesa create = dao.create(criar);
+    public Fornecedor create() {
+        Fornecedor criar = tela.criar();
+        Fornecedor create = dao.create(criar);
 
         model.add(create);
         return create;
     }
 
     @Override
-    public void read(Mesa objeto) {
-        List<Mesa> lista = dao.findAll();
+    public void read(Fornecedor objeto) {
+        List<Fornecedor> lista = dao.findAll();
         tela.listar(lista);
     }
 
     @Override
-    public Mesa update(Mesa objeto) {
-        Mesa editar = tela.editar(objeto);
-        Mesa update = dao.update(editar);
+    public Fornecedor update(Fornecedor objeto) {
+        Fornecedor editar = tela.editar(objeto);
+        Fornecedor update = dao.update(editar);
         this.model.update(editar, update);
         return update;
     }
 
     @Override
-    public boolean delete(Mesa objeto) {
-        Mesa findById = dao.findById(objeto.getCodigo());
+    public boolean delete(Fornecedor objeto) {
+
+        Fornecedor findById = dao.findById(objeto.getCodigo());
         this.tela.preencherTela(objeto);
         boolean delete = this.tela.excluir(findById);
         if (delete) {
@@ -81,4 +82,5 @@ public class MesaController extends AbstractControleSimples<Mesa> {
     public boolean filter(String column, String valor) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
 }

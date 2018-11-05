@@ -5,23 +5,54 @@
  */
 package br.com.fsp.pubsystmcia.controller;
 
+import br.com.fsp.pubsystmcia.dao.ProdutoDao;
+import br.com.fsp.pubsystmcia.model.Fornecedor;
 import br.com.fsp.pubsystmcia.model.Produto;
+import br.com.fsp.pubsystmcia.modeltable.ProdutoTableModel;
+import br.com.fsp.pubsystmcia.view.gui.ProdutoGrid;
+import br.com.fsp.pubsystmcia.view.gui.ViewGuiCadastroProduto;
 import java.util.List;
 
 /**
  *
  * @author Frederico
  */
-public class ProdutoController extends AbstractControleSimples<Produto>{
+public class ProdutoController extends AbstractControleSimples<Produto> {
+
+    protected ProdutoGrid grid;
+    private final ViewGuiCadastroProduto tela;
+    private final ProdutoTableModel model;
+    private FornecedorController fornecedorController;
+
+    public ProdutoController() {
+        dao = new ProdutoDao();
+
+        model = new ProdutoTableModel(dao.findAll());
+        //Cria CRUD
+        grid = ProdutoGrid.getInstance(null, true, this, model);
+
+        tela = new ViewGuiCadastroProduto(null, true);
+    }
+
+    public ProdutoController(FornecedorController fornecedorController) {
+        this();
+        this.fornecedorController = fornecedorController;
+    }
 
     @Override
     public void showInicialScreen() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.grid.setVisible(true);
     }
 
     @Override
     public Produto create() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Fornecedor> all = this.fornecedorController.getAll();
+        tela.setListaFornecedores(all);
+        Produto criar = tela.criar();
+        Produto create = dao.create(criar);
+
+        model.add(create);
+        return create;
     }
 
     @Override
@@ -48,5 +79,9 @@ public class ProdutoController extends AbstractControleSimples<Produto>{
     public boolean filter(String column, String valor) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-     
+
+    @Override
+    public List<Produto> getAll() {
+        return dao.findAll(); //To change body of generated methods, choose Tools | Templates.
+    }
 }
