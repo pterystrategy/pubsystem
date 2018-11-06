@@ -83,4 +83,9 @@ public class FornecedorController extends AbstractControleSimples<Fornecedor> {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public List<Fornecedor> getAll() {
+        return dao.findAll(); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

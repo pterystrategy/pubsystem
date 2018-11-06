@@ -23,7 +23,7 @@ public final class FornecedoresComboModel extends AbstractListModel<Fornecedor> 
 
     public FornecedoresComboModel(List<Fornecedor> listFornecedores) {
         this();
-        this.listFornecedores.addAll(listFornecedores);
+        this.listFornecedores.addAll(this.listFornecedores);
         if (this.getSize() > 0) {
             setSelectedItem(this.listFornecedores.get(FornecedoresComboModel.FIRSTINDEX));
         }
@@ -78,4 +78,5 @@ public final class FornecedoresComboModel extends AbstractListModel<Fornecedor> 
         this.listFornecedores.clear();
         fireContentsChanged(this, FornecedoresComboModel.FIRSTINDEX, getSize() - 1);
     }
+
 }

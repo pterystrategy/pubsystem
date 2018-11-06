@@ -6,6 +6,7 @@
 package br.com.fsp.pubsystmcia.modelcombo;
 
 import br.com.fsp.pubsystmcia.model.Fornecedor;
+
 import java.awt.Component;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.JList;
