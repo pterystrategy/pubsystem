@@ -123,51 +123,6 @@ public class ViewGuiCadastroMesa extends ViewGuiSimples implements IViewSimplesC
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ViewGuiCadastroMesa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ViewGuiCadastroMesa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ViewGuiCadastroMesa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ViewGuiCadastroMesa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                ViewGuiCadastroMesa dialog = new ViewGuiCadastroMesa(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnLimpar;
@@ -180,16 +135,12 @@ public class ViewGuiCadastroMesa extends ViewGuiSimples implements IViewSimplesC
 
     @Override
     public Mesa criar() {
-        lTitulo.setText("Cadastro de Mesa");
-        txtNumeroMesa.setText("");
-        txtNumeroMesa.setEditable(true);
-        txtNumeroMesa.setEnabled(true);
-        btnCancelar.setVisible(true);
+        this.preparaCriar();
+        this.setVisible(true);
         Mesa screenObject;
         if (confirmado) {
             screenObject = this.getScreenObject();
         }
-        this.setVisible(true);
         return this.getScreenObject();
     }
 
@@ -275,5 +226,17 @@ public class ViewGuiCadastroMesa extends ViewGuiSimples implements IViewSimplesC
     @Override
     public void limpaTela() {
         txtNumeroMesa.setText("");
+    }
+    
+    private void preparaCriar(){
+        lTitulo.setText("Cadastro de Mesa");
+        txtNumeroMesa.setText("");
+        txtNumeroMesa.setEditable(true);
+        txtNumeroMesa.setEnabled(true);
+        
+        btnOk.setText("Salvar");
+        btnOk.setVisible(true);
+        
+        btnCancelar.setVisible(true);
     }
 }

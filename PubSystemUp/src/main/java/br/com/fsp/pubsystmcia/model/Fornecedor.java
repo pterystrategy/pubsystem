@@ -8,6 +8,7 @@ package br.com.fsp.pubsystmcia.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
@@ -38,10 +39,10 @@ public class Fornecedor implements Serializable {
     @Column(name = "razaoSocial", length = 50, nullable = true)
     private String razaoSocial;
 
-    @OneToMany(mappedBy = "fornecedor")
+    @OneToMany(mappedBy = "fornecedor", cascade ={ CascadeType.PERSIST, CascadeType.REMOVE})
     private List<Telefone> telefones;
 
-    @OneToMany(mappedBy = "fornecedor")
+    @OneToMany(mappedBy = "fornecedor", cascade ={ CascadeType.PERSIST, CascadeType.REMOVE})
     private List<Endereco> enderecos = new ArrayList<>();
 
     @OneToMany(mappedBy = "fornecedor")

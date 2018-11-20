@@ -42,6 +42,15 @@ public class Endereco implements Serializable {
     @Column(name = "CEP", length = 9)
     private String cep;
 
+    public Endereco(String logradouro) {
+        this.logradouro = logradouro;
+    }
+
+    public Endereco() {
+    }
+    
+    
+
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     @JoinColumn(name = "cd_fornecedor", referencedColumnName = "cd_fornecedor", nullable = true)
     private Fornecedor fornecedor;
@@ -76,8 +85,10 @@ public class Endereco implements Serializable {
 
     @Override
     public String toString() {
-        return "model.Endereco[ id=" + id + " ]";
+        return logradouro +"-"+ bairro + "-" + localidade + "-" + cep;
     }
+    
+    
 
     public String getLogradouro() {
         return logradouro;
@@ -118,5 +129,5 @@ public class Endereco implements Serializable {
     public void setFornecedor(Fornecedor fornecedor) {
         this.fornecedor = fornecedor;
     }
-
+    
 }

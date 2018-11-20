@@ -38,6 +38,10 @@ public class Telefone implements Serializable {
     public Telefone() {
     }
 
+    public Telefone(String numero) {
+        this.numero = numero;
+    }
+
     public Telefone(Long id, String numero) {
         this.id = id;
         this.numero = numero;

@@ -19,7 +19,7 @@ public class FornecedorDao extends AbstractDao<Fornecedor> {
     public Fornecedor create(Fornecedor entity) {
         em.getTransaction().begin();
         em.persist(entity);
-        em.flush();
+        //em.flush();
         em.getTransaction().commit();
         em.refresh(entity);
         return entity;

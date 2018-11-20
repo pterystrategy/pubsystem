@@ -7,7 +7,9 @@ package br.com.fsp.pubsystmcia.view.gui;
 
 import br.com.fsp.pubsystmcia.model.Endereco;
 import br.com.fsp.pubsystmcia.model.Fornecedor;
+import br.com.fsp.pubsystmcia.model.Telefone;
 import br.com.fsp.pubsystmcia.view.IViewSimplesCRUD;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -324,7 +326,7 @@ public class ViewGuiCadastroFornecedor extends ViewGuiSimples implements IViewSi
 
     @Override
     public Fornecedor criar() {
-        this.limpaTela();
+        this.preparaCriar();
         this.setVisible(true);
         Fornecedor fornecedor = null;
         if (retornoOk) {
@@ -340,20 +342,9 @@ public class ViewGuiCadastroFornecedor extends ViewGuiSimples implements IViewSi
 
         Fornecedor novo = new Fornecedor();
         novo.setNome(txtNome.getText());
-        //novo.setEndereco(txtEndereco.getText());
-//        Endereco endereco = new Endereco();
-//        String[] enderecoSeparado;
-//        enderecoSeparado = txtRazaoSocial.getText().split(";");
-//
-//        endereco.setLogradouro(enderecoSeparado[0]);
-//        endereco.setBairro(enderecoSeparado[1]);
-//        endereco.setLocalidade(enderecoSeparado[2]);
-//
-//        endereco.setFornecedor(novo);
-//
-//        novo.addEndereco(endereco);
         novo.setRazaoSocial(txtRazaoSocial.getText());
-
+        novo.setTelefones(preecherListaTele());
+        novo.setEnderecos(preecherListaEnd());
         return novo;
     }
 
@@ -369,13 +360,6 @@ public class ViewGuiCadastroFornecedor extends ViewGuiSimples implements IViewSi
 
     @Override
     public void preencherTela(Fornecedor preencha) {
-        txtNome.setText(preencha.getNome());
-        Endereco get = preencha.getEnderecos().get(0);
-        String endereco = get.getLogradouro() + ";" + get.getLocalidade() + ";" + get.getBairro() + ";" + get.getCep();
-        txtEndereco.setText(endereco);
-        txtRazaoSocial.setText(preencha.getRazaoSocial());
-        //txtTelefone.setText(preencha.getTelefones());
-        //txtTelefoneFixo.setText(preencha.getTelefones());
     }
 
     @Override
@@ -386,10 +370,10 @@ public class ViewGuiCadastroFornecedor extends ViewGuiSimples implements IViewSi
     @Override
     public Fornecedor editar(Fornecedor fornecedor) {
         this.setVisible(true);
+        this.preparaEditar(fornecedor);
+        
         if (retornoOk) {
-            fornecedor.setNome(txtNome.getText());
-            //novo.setEndereco(txtEndereco.getText());
-            fornecedor.setRazaoSocial(txtRazaoSocial.getText());
+            
         } else if (retornoOk == false) {
             showMessage("CANCELADO PELO USUÁRIO!");
         } else if (fornecedor == null) {
@@ -421,5 +405,39 @@ public class ViewGuiCadastroFornecedor extends ViewGuiSimples implements IViewSi
     @Override
     public void read(Fornecedor Type) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    private void preparaEditar(Fornecedor fornecedor){
+        txtNome.setText(fornecedor.getNome());
+        txtRazaoSocial.setText(fornecedor.getRazaoSocial());
+        txtTelefone.setText(fornecedor.getTelefones().get(0).getNumero());
+        txtTelefoneFixo.setText(fornecedor.getTelefones().get(1).getNumero());
+        txtEndereco.setText(fornecedor.getEnderecos().get(0).toString());
+        btnOk.setText("Editar");
+        btnOk.setVisible(true);
+        
+        btnCancelar.setVisible(true);
+    }
+
+    private void preparaCriar() {
+         txtNome.setText("");
+        txtRazaoSocial.setText("");
+        txtTelefone.setText("");
+        txtTelefoneFixo.setText("");
+        txtEndereco.setText(" ");
+    }
+    
+    private List<Telefone> preecherListaTele(){
+        List<Telefone> telefones = new ArrayList<>();
+        telefones.add(new Telefone(txtTelefoneFixo.getText()));
+        telefones.add(new Telefone(txtTelefone.getText()));
+        return telefones;
+    }
+    
+    private List<Endereco> preecherListaEnd(){
+        List<Endereco> enderecos = new ArrayList<>();
+        String endereco = txtEndereco.getText();
+        enderecos.add(new Endereco(endereco));
+        return enderecos;
     }
 }
