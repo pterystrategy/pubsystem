@@ -32,7 +32,7 @@ public class Categoria implements Serializable {
     private Long codigo;
     @Column(name = "nomeCategoria", length = 40, nullable = false)
     private String nome;
-    @Column(name = "estoqueControlado", length = 1, nullable = false)
+    @Column(name = "estoqueControlado", length = 10, nullable = false)
     private String controlado;
 
     @OneToMany(mappedBy = "categoria")
@@ -79,4 +79,11 @@ public class Categoria implements Serializable {
     public void setProdutos(List<Produto> produtos) {
         this.produtos = produtos;
     }
+
+    @Override
+    public String toString() {
+        return "Id: " + codigo + "| Nome: " + nome + "| Controlado: " + controlado;
+    }
+    
+    
 }

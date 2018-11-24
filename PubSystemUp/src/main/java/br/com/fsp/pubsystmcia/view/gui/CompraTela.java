@@ -9,12 +9,12 @@ package br.com.fsp.pubsystmcia.view.gui;
  *
  * @author Frederico
  */
-public class ViewGuiCadastroCompra extends javax.swing.JDialog {
+public class CompraTela extends javax.swing.JDialog {
 
     /**
      * Creates new form ViewGuiCadastroCompra
      */
-    public ViewGuiCadastroCompra(java.awt.Frame parent, boolean modal) {
+    public CompraTela(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
@@ -159,21 +159,23 @@ public class ViewGuiCadastroCompra extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ViewGuiCadastroCompra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CompraTela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ViewGuiCadastroCompra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CompraTela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ViewGuiCadastroCompra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CompraTela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ViewGuiCadastroCompra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CompraTela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ViewGuiCadastroCompra dialog = new ViewGuiCadastroCompra(new javax.swing.JFrame(), true);
+                CompraTela dialog = new CompraTela(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

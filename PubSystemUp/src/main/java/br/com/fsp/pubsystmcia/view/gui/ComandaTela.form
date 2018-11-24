@@ -163,7 +163,7 @@
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="btnGrupoSituacao"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Fecada"/>
+        <Property name="text" type="java.lang.String" value="Fechada"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">

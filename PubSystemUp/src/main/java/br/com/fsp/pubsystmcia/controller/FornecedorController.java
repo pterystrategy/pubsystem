@@ -9,7 +9,7 @@ import br.com.fsp.pubsystmcia.dao.FornecedorDao;
 import br.com.fsp.pubsystmcia.model.Fornecedor;
 import br.com.fsp.pubsystmcia.modeltable.FornecedorTableModel;
 import br.com.fsp.pubsystmcia.view.gui.FornecedorGrid;
-import br.com.fsp.pubsystmcia.view.gui.ViewGuiCadastroFornecedor;
+import br.com.fsp.pubsystmcia.view.gui.FornecedorTela;
 import java.util.List;
 
 /**
@@ -19,7 +19,7 @@ import java.util.List;
 public class FornecedorController extends AbstractControleSimples<Fornecedor> {
 
     protected FornecedorGrid grid;
-    private final ViewGuiCadastroFornecedor tela;
+    private final FornecedorTela tela;
     private final FornecedorTableModel model;
 
     public FornecedorController() {
@@ -29,7 +29,7 @@ public class FornecedorController extends AbstractControleSimples<Fornecedor> {
         //Cria CRUD
         grid = FornecedorGrid.getInstance(null, true, this, model);
 
-        tela = new ViewGuiCadastroFornecedor(null, true);
+        tela = new FornecedorTela(null, true);
     }
 
     @Override

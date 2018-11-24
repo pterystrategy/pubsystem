@@ -17,16 +17,16 @@ import br.com.fsp.pubsystmcia.model.validacoes.ValidaEmail;
  *
  * @author aluno
  */
-public class ViewGuiCadastroFuncionario extends ViewGuiSimples implements IViewSimplesCRUD<Funcionario> {
+public class FuncionarioTela extends ViewGuiSimples implements IViewSimplesCRUD<Funcionario> {
 
-    private static ViewGuiCadastroFuncionario tela;
+    private static FuncionarioTela tela;
     private boolean retornoOk;
 
     public boolean isRetornoOk() {
         return retornoOk;
     }
 
-    public ViewGuiCadastroFuncionario(java.awt.Frame parent, boolean modal) {
+    public FuncionarioTela(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         txtNome.setDocument(new LimiteDigitosLetras(20));
@@ -34,7 +34,7 @@ public class ViewGuiCadastroFuncionario extends ViewGuiSimples implements IViewS
         txtLogin.setDocument(new LimiteDigitosLetrasNumeros((15)));
     }
 
-    public static ViewGuiCadastroFuncionario GetInstance(java.awt.Frame parent, boolean modal) {
+    public static FuncionarioTela GetInstance(java.awt.Frame parent, boolean modal) {
         if (tela == null) {
             /* Set the Nimbus look and feel */
             //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -49,16 +49,16 @@ public class ViewGuiCadastroFuncionario extends ViewGuiSimples implements IViewS
                     }
                 }
             } catch (ClassNotFoundException ex) {
-                java.util.logging.Logger.getLogger(ViewGuiCadastroFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                java.util.logging.Logger.getLogger(FuncionarioTela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
             } catch (InstantiationException ex) {
-                java.util.logging.Logger.getLogger(ViewGuiCadastroFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                java.util.logging.Logger.getLogger(FuncionarioTela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
             } catch (IllegalAccessException ex) {
-                java.util.logging.Logger.getLogger(ViewGuiCadastroFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                java.util.logging.Logger.getLogger(FuncionarioTela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
             } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-                java.util.logging.Logger.getLogger(ViewGuiCadastroFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                java.util.logging.Logger.getLogger(FuncionarioTela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
             }
             //</editor-fold>
-            return new ViewGuiCadastroFuncionario(parent, modal);
+            return new FuncionarioTela(parent, modal);
         } else {
             return tela;
         }
@@ -284,18 +284,18 @@ public class ViewGuiCadastroFuncionario extends ViewGuiSimples implements IViewS
                 || txtEmail.getText().isEmpty() || txtLogin.getText().isEmpty()
                 || txtSenha.getText().isEmpty() || txtConfSenha.getText().isEmpty()) {
             this.showErrorMessage("Campo vazio!");
-        } else if (txtNome.getText().length() < 3) {
-            this.showErrorMessage("O Nome deve conter no mínimo 3 caracteres!");
-        } else if (txtSenha.getText().length() < 6) {
-            this.showErrorMessage("A Senha deve conter no mínimo 6 caracteres!");
-        } else if (txtLogin.getText().length() < 4) {
-            this.showErrorMessage("Login deve conter no mínimo 4 caracteres!");
-        } else if (ValidaCPF.isCPF(String.valueOf(txtCpf.getText())) == false) {
-            this.showErrorMessage("CPF é invalido!");
-        } else if (ValidaEmail.validaEmail(txtEmail.getText()) == false) {
-            this.showErrorMessage("O Email informado é invalido!");
-        } else if (senha.equals(confSenha) == false) {
-            this.showMessage("Senha errada");
+//        } else if (txtNome.getText().length() < 3) {
+//            this.showErrorMessage("O Nome deve conter no mínimo 3 caracteres!");
+//        } else if (txtSenha.getText().length() < 6) {
+//            this.showErrorMessage("A Senha deve conter no mínimo 6 caracteres!");
+//        } else if (txtLogin.getText().length() < 4) {
+//            this.showErrorMessage("Login deve conter no mínimo 4 caracteres!");
+//        } else if (ValidaCPF.isCPF(String.valueOf(txtCpf.getText())) == false) {
+//            this.showErrorMessage("CPF é invalido!");
+//        } else if (ValidaEmail.validaEmail(txtEmail.getText()) == false) {
+//            this.showErrorMessage("O Email informado é invalido!");
+//        } else if (senha.equals(confSenha) == false) {
+//            this.showMessage("Senha errada");
         } else {
             retornoOk = true;
             this.dispose();
@@ -354,14 +354,18 @@ public class ViewGuiCadastroFuncionario extends ViewGuiSimples implements IViewS
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ViewGuiCadastroFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FuncionarioTela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ViewGuiCadastroFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FuncionarioTela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ViewGuiCadastroFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FuncionarioTela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ViewGuiCadastroFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FuncionarioTela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -370,7 +374,7 @@ public class ViewGuiCadastroFuncionario extends ViewGuiSimples implements IViewS
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ViewGuiCadastroFuncionario dialog = new ViewGuiCadastroFuncionario(new javax.swing.JFrame(), true);
+                FuncionarioTela dialog = new FuncionarioTela(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -448,8 +452,11 @@ public class ViewGuiCadastroFuncionario extends ViewGuiSimples implements IViewS
         txtCpf.setText(String.valueOf(preencha.getCpf()));
         txtEmail.setText(preencha.getEmail());
         txtLogin.setText(preencha.getLogin());
-        txtConfSenha.setText(preencha.getSenha());
+        txtSenha.setText(preencha.getSenha());
         txtConfSenha.setText("");
+        txtSenha.setVisible(false);
+        txtConfSenha.setVisible(false);
+        
     }
 
     @Override
@@ -470,14 +477,15 @@ public class ViewGuiCadastroFuncionario extends ViewGuiSimples implements IViewS
 
     @Override
     public Funcionario editar(Funcionario funcionario) {
-
+        this.preencherTela(funcionario);
+        
         this.setVisible(true);
         if (retornoOk) {
             funcionario.setNome(txtNome.getText());
             funcionario.setCpf(txtCpf.getText());
             funcionario.setEmail(txtEmail.getText());
-            funcionario.setLogin(txtLogin.getText());
-            funcionario.setSenha(txtSenha.getText());
+//            funcionario.setLogin(txtLogin.getText());
+//            funcionario.setSenha(txtSenha.getText());
         } else if (retornoOk == false) {
             showMessage("CANCELADO PELO USUÁRIO!");
         } else if (funcionario == null) {

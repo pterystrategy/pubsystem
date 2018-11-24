@@ -9,7 +9,7 @@ import br.com.fsp.pubsystmcia.dao.FuncionarioDao;
 import br.com.fsp.pubsystmcia.model.Funcionario;
 import br.com.fsp.pubsystmcia.modeltable.FuncionarioTableModel;
 import br.com.fsp.pubsystmcia.view.gui.FuncionarioGrid;
-import br.com.fsp.pubsystmcia.view.gui.ViewGuiCadastroFuncionario;
+import br.com.fsp.pubsystmcia.view.gui.FuncionarioTela;
 import java.util.List;
 
 /**
@@ -19,7 +19,7 @@ import java.util.List;
 public class FuncionarioController extends AbstractControleSimples<Funcionario> {
 
     protected FuncionarioGrid grid;
-    private final ViewGuiCadastroFuncionario tela;
+    private final FuncionarioTela tela;
     private final FuncionarioTableModel model;
 
     public FuncionarioController() {
@@ -29,7 +29,7 @@ public class FuncionarioController extends AbstractControleSimples<Funcionario> 
         //Cria CRUD
         grid = FuncionarioGrid.getInstance(null, true, this, model);
 
-        tela = new ViewGuiCadastroFuncionario(null, true);
+        tela = new FuncionarioTela(null, true);
     }
 
     @Override

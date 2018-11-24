@@ -16,22 +16,22 @@ import java.util.List;
  *
  * @author Frederico
  */
-public class ViewGuiCadastroProduto extends ViewGuiSimples implements IViewSimplesCRUD<Produto> {
+public class ProdutoTela extends ViewGuiSimples implements IViewSimplesCRUD<Produto> {
 
-    private static ViewGuiCadastroProduto tela;
+    private static ProdutoTela tela;
     private boolean retornoOk;
 
     public boolean isRetornoOk() {
         return retornoOk;
     }
 
-    public ViewGuiCadastroProduto(java.awt.Frame parent, boolean modal) {
+    public ProdutoTela(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.cmbFornecedores.setRenderer(new FornecedoresCellRenderer());
     }
 
-    public static ViewGuiCadastroProduto GetInstance(java.awt.Frame parent, boolean modal) {
+    public static ProdutoTela GetInstance(java.awt.Frame parent, boolean modal) {
         if (tela == null) {
             /* Set the Nimbus look and feel */
             //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -46,16 +46,16 @@ public class ViewGuiCadastroProduto extends ViewGuiSimples implements IViewSimpl
                     }
                 }
             } catch (ClassNotFoundException ex) {
-                java.util.logging.Logger.getLogger(ViewGuiCadastroProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                java.util.logging.Logger.getLogger(ProdutoTela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
             } catch (InstantiationException ex) {
-                java.util.logging.Logger.getLogger(ViewGuiCadastroProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                java.util.logging.Logger.getLogger(ProdutoTela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
             } catch (IllegalAccessException ex) {
-                java.util.logging.Logger.getLogger(ViewGuiCadastroProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                java.util.logging.Logger.getLogger(ProdutoTela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
             } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-                java.util.logging.Logger.getLogger(ViewGuiCadastroProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                java.util.logging.Logger.getLogger(ProdutoTela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
             }
             //</editor-fold>
-            return new ViewGuiCadastroProduto(parent, modal);
+            return new ProdutoTela(parent, modal);
         } else {
             return tela;
         }

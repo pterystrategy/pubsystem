@@ -35,30 +35,17 @@ public class ViewGuiSimples extends javax.swing.JDialog implements IView {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lTitulo = new javax.swing.JLabel();
-
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
-        lTitulo.setFont(new java.awt.Font("Nimbus Mono L", 1, 18)); // NOI18N
-        lTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lTitulo.setText("Titulo");
-        lTitulo.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGap(0, 448, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lTitulo)
-                .addContainerGap(260, Short.MAX_VALUE))
+            .addGap(0, 296, Short.MAX_VALUE)
         );
 
         pack();
@@ -122,14 +109,13 @@ public class ViewGuiSimples extends javax.swing.JDialog implements IView {
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel lTitulo;
     // End of variables declaration//GEN-END:variables
 
-    public JLabel getlTitulo() {
-        return lTitulo;
-    }
-
-    public void setlTitulo(JLabel lTitulo) {
-        this.lTitulo = lTitulo;
-    }
+//    public JLabel getlTitulo() {
+//        return lTitulo;
+//    }
+//
+//    public void setlTitulo(JLabel lTitulo) {
+//        this.lTitulo = lTitulo;
+//    }
 }

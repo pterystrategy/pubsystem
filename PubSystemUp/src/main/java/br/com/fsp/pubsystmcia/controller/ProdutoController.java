@@ -10,7 +10,7 @@ import br.com.fsp.pubsystmcia.model.Fornecedor;
 import br.com.fsp.pubsystmcia.model.Produto;
 import br.com.fsp.pubsystmcia.modeltable.ProdutoTableModel;
 import br.com.fsp.pubsystmcia.view.gui.ProdutoGrid;
-import br.com.fsp.pubsystmcia.view.gui.ViewGuiCadastroProduto;
+import br.com.fsp.pubsystmcia.view.gui.ProdutoTela;
 import java.util.List;
 
 /**
@@ -20,7 +20,7 @@ import java.util.List;
 public class ProdutoController extends AbstractControleSimples<Produto> {
 
     protected ProdutoGrid grid;
-    private final ViewGuiCadastroProduto tela;
+    private final ProdutoTela tela;
     private final ProdutoTableModel model;
     private FornecedorController fornecedorController;
 
@@ -31,7 +31,7 @@ public class ProdutoController extends AbstractControleSimples<Produto> {
         //Cria CRUD
         grid = ProdutoGrid.getInstance(null, true, this, model);
 
-        tela = new ViewGuiCadastroProduto(null, true);
+        tela = new ProdutoTela(null, true);
     }
 
     public ProdutoController(FornecedorController fornecedorController) {

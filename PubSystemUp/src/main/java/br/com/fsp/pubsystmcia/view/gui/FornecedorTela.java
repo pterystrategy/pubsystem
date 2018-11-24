@@ -16,16 +16,16 @@ import java.util.List;
  *
  * @author Frederico
  */
-public class ViewGuiCadastroFornecedor extends ViewGuiSimples implements IViewSimplesCRUD<Fornecedor> {
+public class FornecedorTela extends ViewGuiSimples implements IViewSimplesCRUD<Fornecedor> {
 
-    private static ViewGuiCadastroFornecedor tela;
+    private static FornecedorTela tela;
     private boolean retornoOk;
 
     public boolean isRetornoOk() {
         return retornoOk;
     }
 
-    public static ViewGuiCadastroFornecedor GetInstance(java.awt.Frame parent, boolean modal) {
+    public static FornecedorTela GetInstance(java.awt.Frame parent, boolean modal) {
         if (tela == null) {
             /* Set the Nimbus look and feel */
             //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -40,23 +40,23 @@ public class ViewGuiCadastroFornecedor extends ViewGuiSimples implements IViewSi
                     }
                 }
             } catch (ClassNotFoundException ex) {
-                java.util.logging.Logger.getLogger(ViewGuiCadastroFornecedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                java.util.logging.Logger.getLogger(FornecedorTela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
             } catch (InstantiationException ex) {
-                java.util.logging.Logger.getLogger(ViewGuiCadastroFornecedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                java.util.logging.Logger.getLogger(FornecedorTela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
             } catch (IllegalAccessException ex) {
-                java.util.logging.Logger.getLogger(ViewGuiCadastroFornecedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                java.util.logging.Logger.getLogger(FornecedorTela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
             } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-                java.util.logging.Logger.getLogger(ViewGuiCadastroFornecedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                java.util.logging.Logger.getLogger(FornecedorTela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
             }
             //</editor-fold>
-            return new ViewGuiCadastroFornecedor(parent, modal);
+            return new FornecedorTela(parent, modal);
         } else {
             return tela;
         }
 
     }
 
-    public ViewGuiCadastroFornecedor(java.awt.Frame parent, boolean modal) {
+    public FornecedorTela(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
@@ -275,14 +275,18 @@ public class ViewGuiCadastroFornecedor extends ViewGuiSimples implements IViewSi
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ViewGuiCadastroFornecedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FornecedorTela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ViewGuiCadastroFornecedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FornecedorTela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ViewGuiCadastroFornecedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FornecedorTela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ViewGuiCadastroFornecedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FornecedorTela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -290,7 +294,7 @@ public class ViewGuiCadastroFornecedor extends ViewGuiSimples implements IViewSi
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(() -> {
-            ViewGuiCadastroFornecedor dialog = new ViewGuiCadastroFornecedor(new javax.swing.JFrame(), true);
+            FornecedorTela dialog = new FornecedorTela(new javax.swing.JFrame(), true);
             dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                 @Override
                 public void windowClosing(java.awt.event.WindowEvent e) {
@@ -369,8 +373,10 @@ public class ViewGuiCadastroFornecedor extends ViewGuiSimples implements IViewSi
 
     @Override
     public Fornecedor editar(Fornecedor fornecedor) {
-        this.setVisible(true);
+        this.limpaTela();
         this.preparaEditar(fornecedor);
+        this.setVisible(true);
+        
         
         if (retornoOk) {
             
@@ -410,9 +416,9 @@ public class ViewGuiCadastroFornecedor extends ViewGuiSimples implements IViewSi
     private void preparaEditar(Fornecedor fornecedor){
         txtNome.setText(fornecedor.getNome());
         txtRazaoSocial.setText(fornecedor.getRazaoSocial());
-        txtTelefone.setText(fornecedor.getTelefones().get(0).getNumero());
-        txtTelefoneFixo.setText(fornecedor.getTelefones().get(1).getNumero());
-        txtEndereco.setText(fornecedor.getEnderecos().get(0).toString());
+//        txtTelefone.setText(fornecedor.getTelefones().get(0).getNumero());
+//        txtTelefoneFixo.setText(fornecedor.getTelefones().get(1).getNumero());
+//        txtEndereco.setText(fornecedor.getEnderecos().get(0).toString());
         btnOk.setText("Editar");
         btnOk.setVisible(true);
         

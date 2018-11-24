@@ -18,13 +18,14 @@ public class PrincipalControle {
     private final MesaController mesaController;
     private final FornecedorController fornecedorController;
     private final ProdutoController produtoController;
+    private final CategoriaController categoriaController;
 
     public PrincipalControle() {
         funControle = new FuncionarioController();
         mesaController = new MesaController();
         fornecedorController = new FornecedorController();
+        categoriaController = new CategoriaController();
         produtoController = new ProdutoController(fornecedorController);
-
     }
 
     public void iniciaFuncionarioControle() {
@@ -50,5 +51,8 @@ public class PrincipalControle {
 
     public void iniciaComandaControle() {
 
+    }
+    public void iniciaCategoriaControle(){
+        categoriaController.showInicialScreen();
     }
 }

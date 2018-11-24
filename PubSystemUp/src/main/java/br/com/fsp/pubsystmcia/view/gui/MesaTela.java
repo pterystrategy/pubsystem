@@ -13,12 +13,12 @@ import java.util.List;
  *
  * @author Frederico
  */
-public class ViewGuiCadastroMesa extends ViewGuiSimples implements IViewSimplesCRUD<Mesa> {
+public class MesaTela extends ViewGuiSimples implements IViewSimplesCRUD<Mesa> {
 
     /**
      * Creates new form ViewGuiMesaCadastro
      */
-    public ViewGuiCadastroMesa(java.awt.Frame parent, boolean modal) {
+    public MesaTela(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }

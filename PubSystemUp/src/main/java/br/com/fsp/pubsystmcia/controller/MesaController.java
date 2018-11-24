@@ -9,7 +9,7 @@ import br.com.fsp.pubsystmcia.dao.MesaDao;
 import br.com.fsp.pubsystmcia.model.Mesa;
 import br.com.fsp.pubsystmcia.modeltable.MesaTableModel;
 import br.com.fsp.pubsystmcia.view.gui.MesaGrid;
-import br.com.fsp.pubsystmcia.view.gui.ViewGuiCadastroMesa;
+import br.com.fsp.pubsystmcia.view.gui.MesaTela;
 import java.util.List;
 
 /**
@@ -19,7 +19,7 @@ import java.util.List;
 public class MesaController extends AbstractControleSimples<Mesa> {
 
     protected MesaGrid grid;
-    private final ViewGuiCadastroMesa tela;
+    private final MesaTela tela;
     private final MesaTableModel model;
 
     public MesaController() {
@@ -29,7 +29,7 @@ public class MesaController extends AbstractControleSimples<Mesa> {
         //Cria CRUD
         grid = MesaGrid.getInstance(null, true, this, model);
 
-        tela = new ViewGuiCadastroMesa(null, true);
+        tela = new MesaTela(null, true);
     }
 
     @Override
