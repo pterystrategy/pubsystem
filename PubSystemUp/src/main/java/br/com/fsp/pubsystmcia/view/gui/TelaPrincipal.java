@@ -51,6 +51,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         imnFornecedor = new javax.swing.JMenuItem();
         imnProduto = new javax.swing.JMenuItem();
         imnCategoria = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -102,6 +103,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         jMenu1.add(imnCategoria);
 
+        jMenuItem1.setText("Cadastro Compra");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Relatórios");
@@ -147,6 +156,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
         this.controle.iniciaCategoriaControle();
     }//GEN-LAST:event_imnCategoriaActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        this.controle.iniciaCompraControle();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem imnCategoria;
     private javax.swing.JMenuItem imnFornecedor;
@@ -156,5 +169,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     // End of variables declaration//GEN-END:variables
 }

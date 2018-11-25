@@ -8,6 +8,7 @@ package br.com.fsp.pubsystmcia.model;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -17,6 +18,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -37,14 +39,16 @@ public class Compra implements Serializable {
     @JoinColumn(foreignKey = @ForeignKey(name = "cd_compra"),
             referencedColumnName = "cd_compra")
     private Long codigo;
-    @Transient
-    private List<Fornecedor> fornecedor;
+    //@Transient
+    @ManyToOne(cascade = {CascadeType.REMOVE})
+    @JoinColumn(name = "cd_fornecedor")
+    private Fornecedor fornecedor;
 
     @ManyToMany(mappedBy = "compras", fetch = FetchType.LAZY)
     @JoinColumn(name = "cd_compra")
     private List<Produto> produtos;
 
-    @Column(name = "dataCompra", nullable = false)
+    @Column(name = "dataCompra")
     @Temporal(TemporalType.DATE)
     private Date dataCompra;
 
@@ -60,11 +64,11 @@ public class Compra implements Serializable {
         this.codigo = codigo;
     }
 
-    public List<Fornecedor> getFornecedor() {
+    public Fornecedor getFornecedor() {
         return fornecedor;
     }
 
-    public void setFornecedor(List<Fornecedor> fornecedor) {
+    public void setFornecedor(Fornecedor fornecedor) {
         this.fornecedor = fornecedor;
     }
 

@@ -39,11 +39,25 @@ public class MesaController extends AbstractControleSimples<Mesa> {
 
     @Override
     public Mesa create() {
-        Mesa criar = tela.criar();
-        Mesa create = dao.create(criar);
+        Mesa mesa = tela.criar();
 
-        model.add(create);
-        return create;
+            if(tela.isConfirmado()== false){
+                //categoria = null;
+
+                return null;
+                
+            }    
+            else{
+
+                mesa = tela.getScreenObject();
+                dao.create(mesa);
+            }
+        
+//        Mesa criar = tela.criar();
+//        Mesa create = dao.create(criar);
+
+        model.add(mesa);
+        return mesa;
     }
 
     @Override

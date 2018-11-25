@@ -47,6 +47,10 @@ public class Fornecedor implements Serializable {
 
     @OneToMany(mappedBy = "fornecedor")
     private List<Produto> produtos;
+    
+    @OneToMany(mappedBy = "fornecedor")
+    @JoinColumn(name = "cd_fornecedor")
+    private List<Compra> compras;
 
     public Fornecedor(String nome, List<Telefone> telefones) {
         this.nome = nome;

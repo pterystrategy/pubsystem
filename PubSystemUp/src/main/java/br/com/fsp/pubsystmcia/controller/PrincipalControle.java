@@ -19,6 +19,7 @@ public class PrincipalControle {
     private final FornecedorController fornecedorController;
     private final ProdutoController produtoController;
     private final CategoriaController categoriaController;
+    private final CompraController compraController;
 
     public PrincipalControle() {
         funControle = new FuncionarioController();
@@ -26,6 +27,7 @@ public class PrincipalControle {
         fornecedorController = new FornecedorController();
         categoriaController = new CategoriaController();
         produtoController = new ProdutoController(fornecedorController);
+        compraController = new CompraController(fornecedorController);
     }
 
     public void iniciaFuncionarioControle() {
@@ -54,5 +56,8 @@ public class PrincipalControle {
     }
     public void iniciaCategoriaControle(){
         categoriaController.showInicialScreen();
+    }
+    public void iniciaCompraControle(){
+        compraController.showInicialScreen();
     }
 }

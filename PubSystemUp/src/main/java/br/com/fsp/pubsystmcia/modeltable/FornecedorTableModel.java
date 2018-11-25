@@ -7,6 +7,7 @@ package br.com.fsp.pubsystmcia.modeltable;
 
 import br.com.fsp.pubsystmcia.model.Fornecedor;
 import br.com.fsp.pubsystmcia.model.Mesa;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,7 +16,11 @@ import java.util.List;
  */
 public class FornecedorTableModel extends UtilTableModel<Fornecedor> {
 
-    protected List<Fornecedor> listaoriginal;
+    public FornecedorTableModel(){
+        this(new ArrayList<Fornecedor>());
+    }
+    
+    //protected List<Fornecedor> listaoriginal;
 
     public FornecedorTableModel(List<Fornecedor> listanova) {
         super(listanova);

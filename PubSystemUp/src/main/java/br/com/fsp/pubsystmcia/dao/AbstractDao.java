@@ -12,7 +12,7 @@ public abstract class AbstractDao<T> implements IDAO<T> {
     protected EntityManager em;
 
     public AbstractDao() {
-        factory = Persistence.createEntityManagerFactory("PubSystemPU");
+        factory = Persistence.createEntityManagerFactory("PubSystemUp");
         em = this.createEntityManager();
     }
 

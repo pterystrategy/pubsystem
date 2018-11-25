@@ -6,6 +6,7 @@
 package br.com.fsp.pubsystmcia.dao;
 
 import br.com.fsp.pubsystmcia.model.Compra;
+import br.com.fsp.pubsystmcia.model.Fornecedor;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.criteria.CriteriaQuery;
@@ -52,6 +53,9 @@ public class CompraDao extends AbstractDao<Compra> implements Serializable  {
     @Override
     public Compra create(Compra entity) {
         em.getTransaction().begin();
+        FornecedorDao daoFornecedor = new FornecedorDao();
+        Fornecedor f = daoFornecedor.findById(entity.getFornecedor().getCodigo());
+        entity.setFornecedor(f);
         em.persist(entity);
         em.flush();
         em.getTransaction().commit();

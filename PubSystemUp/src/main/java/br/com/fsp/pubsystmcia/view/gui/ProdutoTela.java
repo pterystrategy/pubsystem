@@ -415,6 +415,7 @@ public class ProdutoTela extends ViewGuiSimples implements IViewSimplesCRUD<Prod
                 lista += produto.toString() + "\n";
             }
         }
+        this.showMessage(lista);
     }
 
     @Override

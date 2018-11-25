@@ -15,6 +15,8 @@ import java.util.List;
  */
 public class MesaTela extends ViewGuiSimples implements IViewSimplesCRUD<Mesa> {
 
+    private boolean confirmado;
+    
     /**
      * Creates new form ViewGuiMesaCadastro
      */
@@ -22,7 +24,12 @@ public class MesaTela extends ViewGuiSimples implements IViewSimplesCRUD<Mesa> {
         super(parent, modal);
         initComponents();
     }
+    
 
+    public boolean isConfirmado() {
+        return confirmado;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -131,17 +138,17 @@ public class MesaTela extends ViewGuiSimples implements IViewSimplesCRUD<Mesa> {
     private javax.swing.JLabel lblNumeroMesa;
     private javax.swing.JTextField txtNumeroMesa;
     // End of variables declaration//GEN-END:variables
-    private boolean confirmado = false;
+    
 
     @Override
     public Mesa criar() {
         this.preparaCriar();
         this.setVisible(true);
-        Mesa screenObject;
+        Mesa screenObject = null;
         if (confirmado) {
-            screenObject = this.getScreenObject();
+            this.getScreenObject();
         }
-        return this.getScreenObject();
+        return screenObject;
     }
 
     @Override
@@ -200,17 +207,15 @@ public class MesaTela extends ViewGuiSimples implements IViewSimplesCRUD<Mesa> {
     @Override
     public Mesa getScreenObject() {
         this.limpaTela();
-        if (txtNumeroMesa.getText().equals("")) {
-            txtNumeroMesa.setText("0000");
-        }
+//        if (txtNumeroMesa.getText().equals("")) {
+//            txtNumeroMesa.setText("0000");
+//        }
         Mesa retorno = new Mesa();
         retorno.setNumero(Integer.parseInt(txtNumeroMesa.getText()));
         return retorno;
     }
 
-    public boolean isConfirmado() {
-        return confirmado;
-    }
+    
 
     public void setConfirmado(boolean confirmado) {
         this.confirmado = confirmado;

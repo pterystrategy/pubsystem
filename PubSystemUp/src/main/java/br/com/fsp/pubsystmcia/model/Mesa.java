@@ -69,4 +69,11 @@ public class Mesa implements Serializable {
         this.comandas = comandas;
     }
 
+    @Override
+    public String toString() {
+        return "Codigo: " + codigo + "| Numero: " + numero;
+    }
+    
+    
+
 }
